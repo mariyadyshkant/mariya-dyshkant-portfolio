@@ -46,18 +46,30 @@ header.nav{
   max-width:var(--maxw); margin:0 auto; padding:14px 24px;
   display:flex; justify-content:space-between; align-items:center;
 }
-.nav-inner .brand{ font-family:'JetBrains Mono', monospace; font-weight:500; font-size:.9rem; }
+.nav-inner .brand{
+  font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
 .nav-inner nav a{
   color:var(--ink); text-decoration:none; margin-left:22px; font-size:.9rem;
 }
 .nav-inner nav a:hover{ color:var(--accent); }
 
 /* HERO */
-.hero{ padding:96px 0 64px; position:relative; }
-.hero .eyebrow{ margin-bottom:14px; display:block; }
-.hero h1{ font-size:clamp(2.2rem, 5vw, 3.4rem); max-width:14ch; }
-.hero p.tagline{ font-size:1.15rem; color:var(--ink-soft); max-width:48ch; margin:14px 0 30px; }
-.hero .cta{ display:flex; gap:14px; flex-wrap:wrap; }
+.hero{ padding:20px 0 64px; position:relative; text-align:center; }
+.hero .signature{
+  display:block; margin:0 auto; width:min(780px, 95%); height:auto;
+}
+.hero .role{
+  font-family:'Fraunces', serif; font-weight:600;
+  font-size:clamp(2.2rem, 5.5vw, 3.2rem); color:var(--ink);
+  margin:0 0 6px;
+}
+.hero p.tagline{ font-size:1.15rem; color:var(--ink-soft); max-width:48ch; margin:0 auto 30px; }
+.hero .cta{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
 .btn{
   display:inline-flex; align-items:center; gap:8px;
   padding:11px 20px; border-radius:999px; font-size:.92rem; text-decoration:none;
@@ -65,15 +77,15 @@ header.nav{
 }
 .btn.primary{ background:var(--accent); color:var(--bg); }
 .btn.primary:hover{ background:#8f1f23; }
-.btn.ghost{ border:1px solid var(--line); color:var(--ink); }
-.btn.ghost:hover{ border-color:var(--accent); color:var(--accent); }
+.btn.ghost{
+    background: var(--accent);
+    color: var(--bg);
+  }
+.btn.ghost:hover{
+    background: #8f1f23;
+  }
 
-/* gear divider — signature element */
-.gear-divider{ display:flex; align-items:center; gap:10px; margin:8px 0 0; opacity:.55; }
-.gear-divider svg{ width:22px; height:22px; animation:spin 9s linear infinite; }
-.gear-divider svg.rev{ animation-direction:reverse; width:14px; height:14px; margin-left:-6px; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
-@media (prefers-reduced-motion: reduce){ .gear-divider svg{ animation:none; } }
 
 section{ padding:56px 0; border-top:1px solid var(--line); }
 section .eyebrow{ margin-bottom:10px; display:block; }

@@ -134,12 +134,18 @@ section .eyebrow{ margin-bottom:14px; }
 /* SKILLS */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   margin-top: 24px;
 }
 
-@media (max-width:720px) {
+@media (max-width:860px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:480px) {
   .skills-grid {
     grid-template-columns: 1fr;
   }
@@ -209,6 +215,7 @@ section .eyebrow{ margin-bottom:14px; }
 }
 
 .skills-legend {
+  grid-column: 1 / -1;
   display: flex;
   gap: 22px;
   margin-top: 22px;

@@ -9,7 +9,7 @@ const projects = {
     title: 'Fluffman',
     tagline: 'E-commerce di articoli per animali domestici',
     summary:
-      'E-commerce completo di articoli per animali domestici, progetto finale in team (5 persone) al bootcamp Boolean.',
+      'E-commerce completo di articoli per animali domestici, progetto finale in team (5 persone) al bootcamp di Boolean.',
     platforms: ['Web'],
     stack: ['React 19', 'Vite', 'React Router 7', 'Bootstrap', 'Node.js', 'Express 5', 'PostgreSQL'],
     links: {
@@ -21,14 +21,16 @@ const projects = {
       {
         heading: 'Il mio ruolo',
         body: [
-          'Progetto finale di team (5 persone) durante la parte generale del bootcamp Boolean.',
-          'Frontend React: componenti prodotto, sistema di preferiti e carrello, validazione del checkout. Più un intervento backend successivo, per necessità di deploy: la migrazione del database da MySQL a PostgreSQL.',
+          'Progetto finale in team (5 persone) durante il bootcamp di Boolean.',
+          '*Frontend React*: componenti prodotto, sistema di preferiti e carrello, validazione del checkout. Più un intervento *backend* successivo, per necessità di deploy: la migrazione del database da MySQL a PostgreSQL.',
         ],
       },
       {
         heading: 'Stack',
         body: [
-          'React 19 + Vite, React Router 7, Bootstrap sul frontend. Node.js + Express 5 (ES modules) come API REST pura sul backend — nessun templating server-side, comunicazione via fetch() su endpoint JSON. Database PostgreSQL su Supabase.',
+          '*Lato frontend*: React 19 + Vite, React Router 7 per il routing, Bootstrap per lo stile.',
+          '*Lato backend*: Node.js + Express 5 (ES modules) come API REST pura — nessun templating server-side, comunicazione via **fetch()** su endpoint JSON.',
+          '*Lato database*: PostgreSQL (Railway)',
         ],
       },
       {
@@ -37,24 +39,24 @@ const projects = {
           'Il catalogo è organizzato su 6 entità collegate:',
           ['Prodotti', 'Marche', 'Animali', 'Immagini', 'Acquisti', 'Acquisti↔Prodotti (tabella ponte)'],
           'La tabella ponte salva uno snapshot di prezzo e quantità al momento dell’acquisto — pattern realistico da e-commerce, non un semplice carrello.',
-          'Il checkout gira dentro una transazione con row-locking (SELECT ... FOR UPDATE): blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
+          'Il checkout gira dentro una transazione con row-locking (**SELECT ... FOR UPDATE**): blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
         ],
       },
       {
         heading: 'La sfida tecnica che ho affrontato',
         body: [
-          'Per deployare il sito ho migrato l’intero backend da MySQL a PostgreSQL (da mysql2 a pg), su 7 controller: sintassi dei placeholder diversa (? contro $1, $2...), forma diversa del risultato delle query, API di transazione completamente diversa.',
-          'Il punto più interessante: una query di prodotti correlati usava HAVING senza GROUP BY per filtrare riga per riga — cosa che MySQL permette silenziosamente ma che PostgreSQL rifiuta perché non è SQL standard. L’ho risolta riscrivendo la query con una subquery che calcola il punteggio di correlazione e filtra a un livello esterno.',
+          'Per deployare il sito ho migrato l’intero backend da MySQL a PostgreSQL (da **mysql2** a **pg**), su 7 controller: sintassi dei placeholder diversa (**?** contro **$1, $2...**), forma diversa del risultato delle query, API di transazione completamente diversa.',
+          'Il punto più interessante: una query di prodotti correlati usava **HAVING** senza **GROUP BY** per filtrare riga per riga — cosa che MySQL permette silenziosamente ma che PostgreSQL rifiuta perché non è SQL standard. L’ho risolta riscrivendo la query con una subquery che calcola il punteggio di correlazione e filtra a un livello esterno.',
         ],
       },
       {
         heading: 'Cosa ho imparato lavorando sul frontend',
         body: [
-          'Wishlist e carrello sono partiti come state locale dentro il singolo componente prodotto — funzionava, finché non serviva sincronizzare il conteggio nell’header con quello che succedeva altrove nella pagina. Li ho rifattorizzati in due Context React condivisi, eliminando la logica duplicata tra componenti e un bug reale sul badge del contatore che a volte mostrava un numero sbagliato.',
+          '*Wishlist* e *carrello* sono partiti come state locale dentro il singolo componente prodotto — funzionava, finché non serviva sincronizzare il conteggio nell’header con quello che succedeva altrove nella pagina. Li ho rifattorizzati in due **Context React** condivisi, eliminando la logica duplicata tra componenti e un bug reale sul badge del contatore che a volte mostrava un numero sbagliato.',
         ],
       },
       {
-        heading: 'Cosa non c’è (volutamente, per onestà)',
+        heading: 'Cosa non c’è (volutamente)',
         body: [
           'Nessuna autenticazione utenti, nessun pannello admin, nessuna integrazione di pagamento reale — è un progetto didattico e questo era fuori scope.',
         ],
@@ -78,6 +80,10 @@ const projects = {
         body: [
           'Applicazione full-stack sviluppata in autonomia per la gestione di un catalogo corsi: CRUD completo, autenticazione e relazioni tra entità.',
         ],
+      },
+      {
+        heading: 'Stack',
+        body: ['PHP + Laravel sul backend, database MySQL.'],
       },
     ],
   },

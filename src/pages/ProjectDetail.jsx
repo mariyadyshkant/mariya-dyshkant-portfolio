@@ -4,6 +4,28 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import { getProject } from '../data/projects'
 
+// Interpreta due sintassi nei testi (src/data/projects.js), senza HTML:
+// **testo** -> evidenziazione "codice" (usata per sintassi/termini tecnici letterali)
+// *testo*   -> evidenziazione corsiva in rosso (per dare risalto discorsivo, non da codice)
+function renderInline(text) {
+  const regex = /\*\*(.+?)\*\*|\*(.+?)\*/g
+  const nodes = []
+  let lastIndex = 0
+  let key = 0
+  let match
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index))
+    if (match[1] !== undefined) {
+      nodes.push(<strong className="hl" key={key++}>{match[1]}</strong>)
+    } else {
+      nodes.push(<em className="hl-italic" key={key++}>{match[2]}</em>)
+    }
+    lastIndex = regex.lastIndex
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex))
+  return nodes
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams()
   const project = getProject(slug)
@@ -54,11 +76,11 @@ export default function ProjectDetail() {
                   Array.isArray(paragraph) ? (
                     <ul key={i}>
                       {paragraph.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item}>{renderInline(item)}</li>
                       ))}
                     </ul>
                   ) : (
-                    <p key={i}>{paragraph}</p>
+                    <p key={i}>{renderInline(paragraph)}</p>
                   ),
                 )}
               </div>

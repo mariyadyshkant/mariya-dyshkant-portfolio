@@ -19,9 +19,42 @@ const projects = {
     screenshots: [],
     sections: [
       {
-        heading: 'Il progetto',
+        heading: 'Il mio ruolo',
         body: [
-          'E-commerce completo per articoli per animali domestici, progetto finale in team (5 persone) al bootcamp Boolean.',
+          'Progetto finale di team (5 persone) durante la parte generale del bootcamp Boolean.',
+          'Frontend React: componenti prodotto, sistema di preferiti e carrello, validazione del checkout. Più un intervento backend successivo, per necessità di deploy: la migrazione del database da MySQL a PostgreSQL.',
+        ],
+      },
+      {
+        heading: 'Stack',
+        body: [
+          'React 19 + Vite, React Router 7, Bootstrap sul frontend. Node.js + Express 5 (ES modules) come API REST pura sul backend — nessun templating server-side, comunicazione via fetch() su endpoint JSON. Database PostgreSQL su Supabase.',
+        ],
+      },
+      {
+        heading: 'Cosa fa, sotto il cofano',
+        body: [
+          'Il catalogo è organizzato su 6 entità collegate (prodotti, marche, animali, immagini, acquisti, e una tabella ponte acquisti↔prodotti che salva uno snapshot di prezzo e quantità al momento dell’acquisto — pattern realistico da e-commerce, non un semplice carrello).',
+          'Il checkout non è un semplice inserimento a database: gira dentro una transazione con row-locking (SELECT ... FOR UPDATE) che blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
+        ],
+      },
+      {
+        heading: 'La sfida tecnica che ho affrontato',
+        body: [
+          'Per poter deployare il sito ho dovuto migrare l’intero backend da MySQL a PostgreSQL, su 7 controller. Non è stato solo cambiare driver: sintassi dei placeholder diversa (? contro $1, $2...), forma diversa del risultato delle query, API di transazione completamente diversa.',
+          'Il punto più interessante: una query di prodotti correlati usava HAVING senza GROUP BY per filtrare riga per riga — cosa che MySQL permette silenziosamente ma che PostgreSQL rifiuta perché non è SQL standard. L’ho risolta riscrivendo la query con una subquery che calcola il punteggio di correlazione e filtra a un livello esterno.',
+        ],
+      },
+      {
+        heading: 'Cosa ho imparato lavorando sul frontend',
+        body: [
+          'Wishlist e carrello sono partiti come state locale dentro il singolo componente prodotto — funzionava, finché non serviva sincronizzare il conteggio nell’header con quello che succedeva altrove nella pagina. Li ho rifattorizzati in due Context React condivisi, eliminando la logica duplicata tra componenti e un bug reale sul badge del contatore che a volte mostrava un numero sbagliato.',
+        ],
+      },
+      {
+        heading: 'Cosa non c’è (volutamente, per onestà)',
+        body: [
+          'Nessuna autenticazione utenti, nessun pannello admin, nessuna integrazione di pagamento reale — è un progetto didattico e questo era fuori scope.',
         ],
       },
     ],

@@ -37,13 +37,13 @@ const projects = {
           'Il catalogo è organizzato su 6 entità collegate:',
           ['Prodotti', 'Marche', 'Animali', 'Immagini', 'Acquisti', 'Acquisti↔Prodotti (tabella ponte)'],
           'La tabella ponte salva uno snapshot di prezzo e quantità al momento dell’acquisto — pattern realistico da e-commerce, non un semplice carrello.',
-          'Il checkout non è un semplice inserimento a database: gira dentro una transazione con row-locking (SELECT ... FOR UPDATE) che blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
+          'Il checkout gira dentro una transazione con row-locking (SELECT ... FOR UPDATE): blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
         ],
       },
       {
         heading: 'La sfida tecnica che ho affrontato',
         body: [
-          'Per poter deployare il sito ho dovuto migrare l’intero backend da MySQL a PostgreSQL, su 7 controller. Non è stato solo cambiare driver: sintassi dei placeholder diversa (? contro $1, $2...), forma diversa del risultato delle query, API di transazione completamente diversa.',
+          'Per deployare il sito ho migrato l’intero backend da MySQL a PostgreSQL (da mysql2 a pg), su 7 controller: sintassi dei placeholder diversa (? contro $1, $2...), forma diversa del risultato delle query, API di transazione completamente diversa.',
           'Il punto più interessante: una query di prodotti correlati usava HAVING senza GROUP BY per filtrare riga per riga — cosa che MySQL permette silenziosamente ma che PostgreSQL rifiuta perché non è SQL standard. L’ho risolta riscrivendo la query con una subquery che calcola il punteggio di correlazione e filtra a un livello esterno.',
         ],
       },

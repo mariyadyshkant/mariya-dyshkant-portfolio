@@ -50,9 +50,17 @@ export default function ProjectDetail() {
             {sections.map((section) => (
               <div key={section.heading}>
                 <h2>{section.heading}</h2>
-                {section.body.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
+                {section.body.map((paragraph, i) =>
+                  Array.isArray(paragraph) ? (
+                    <ul key={i}>
+                      {paragraph.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p key={i}>{paragraph}</p>
+                  ),
+                )}
               </div>
             ))}
 

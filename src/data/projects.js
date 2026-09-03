@@ -7,9 +7,9 @@ const projects = {
   fluffman: {
     slug: 'fluffman',
     title: 'Fluffman',
-    tagline: 'E-commerce per articoli per animali domestici',
+    tagline: 'E-commerce di articoli per animali domestici',
     summary:
-      'E-commerce completo per articoli per animali domestici, progetto finale in team (5 persone) al bootcamp Boolean.',
+      'E-commerce completo di articoli per animali domestici, progetto finale in team (5 persone) al bootcamp Boolean.',
     platforms: ['Web'],
     stack: ['React 19', 'Vite', 'React Router 7', 'Bootstrap', 'Node.js', 'Express 5', 'PostgreSQL'],
     links: {
@@ -34,7 +34,9 @@ const projects = {
       {
         heading: 'Cosa fa, sotto il cofano',
         body: [
-          'Il catalogo è organizzato su 6 entità collegate (prodotti, marche, animali, immagini, acquisti, e una tabella ponte acquisti↔prodotti che salva uno snapshot di prezzo e quantità al momento dell’acquisto — pattern realistico da e-commerce, non un semplice carrello).',
+          'Il catalogo è organizzato su 6 entità collegate:',
+          ['Prodotti', 'Marche', 'Animali', 'Immagini', 'Acquisti', 'Acquisti↔Prodotti (tabella ponte)'],
+          'La tabella ponte salva uno snapshot di prezzo e quantità al momento dell’acquisto — pattern realistico da e-commerce, non un semplice carrello.',
           'Il checkout non è un semplice inserimento a database: gira dentro una transazione con row-locking (SELECT ... FOR UPDATE) che blocca la riga di ogni prodotto mentre verifica e decrementa lo stock, con rollback automatico se la quantità richiesta non è più disponibile. Serve a evitare overselling in caso di richieste concorrenti sullo stesso prodotto.',
         ],
       },

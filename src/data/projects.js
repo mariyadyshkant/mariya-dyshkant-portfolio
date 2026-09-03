@@ -9,7 +9,7 @@ const projects = {
     title: 'Fluffman',
     tagline: '*E-commerce di articoli per animali domestici*',
     summary:
-      'E-commerce completo di articoli per animali domestici, progetto finale in team (5 persone) al bootcamp di Boolean.',
+      'E-commerce di articoli per animali domestici, progetto finale in team del bootcamp di Boolean. Mio ruolo: frontend React (componenti, refactor wishlist/carrello in Context API) e migrazione del database da MySQL a PostgreSQL per il deployment in produzione.',
     platforms: ['Web'],
     stack: ['React 19', 'Vite', 'React Router 7', 'Bootstrap', 'Node.js', 'Express 5', 'PostgreSQL'],
     links: {

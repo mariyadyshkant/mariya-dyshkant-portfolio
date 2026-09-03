@@ -38,7 +38,7 @@ export default function ProjectDetail() {
     return <Navigate to="/" replace />
   }
 
-  const { title, tagline, platforms, stack, links, screenshots, sections } = project
+  const { title, tagline, platforms, stack, links, video, screenshots, sections } = project
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function ProjectDetail() {
         <div className="detail-head">
           <div>
             <h1>{title}</h1>
-            <p className="detail-tagline">{tagline}</p>
+            <p className="detail-tagline">{renderInline(tagline)}</p>
           </div>
         </div>
         <div className="detail-links">
@@ -61,6 +61,11 @@ export default function ProjectDetail() {
           {links?.code && (
             <a className="btn ghost" href={links.code} target="_blank" rel="noopener">
               Codice →
+            </a>
+          )}
+          {video && (
+            <a className="btn ghost" href="#screencast">
+              Screencast ↓
             </a>
           )}
         </div>
@@ -85,14 +90,6 @@ export default function ProjectDetail() {
                 )}
               </div>
             ))}
-
-            {screenshots.length > 0 && (
-              <div className="screenshots">
-                {screenshots.map((src) => (
-                  <img key={src} src={src} alt={`Screenshot di ${title}`} />
-                ))}
-              </div>
-            )}
           </div>
 
           <aside className="detail-side">
@@ -110,6 +107,23 @@ export default function ProjectDetail() {
             </div>
           </aside>
         </div>
+
+        {screenshots.length > 0 && (
+          <>
+            <h2 id="screencast" className="section-heading">Screencast</h2>
+            <div className="screenshots">
+              {screenshots.map((src) => (
+                <figure key={src}>
+                  <img src={src} alt={`Screenshot di ${title}`} loading="lazy" />
+                </figure>
+              ))}
+            </div>
+          </>
+        )}
+
+        {video && (
+          <video className="detail-video" src={video} controls playsInline preload="none" />
+        )}
       </section>
 
       <Footer />

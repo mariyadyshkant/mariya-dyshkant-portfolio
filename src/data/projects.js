@@ -7,7 +7,7 @@ const projects = {
   fluffman: {
     slug: 'fluffman',
     title: 'Fluffman',
-    tagline: 'E-commerce di articoli per animali domestici',
+    tagline: '*E-commerce di articoli per animali domestici*',
     summary:
       'E-commerce completo di articoli per animali domestici, progetto finale in team (5 persone) al bootcamp di Boolean.',
     platforms: ['Web'],
@@ -16,7 +16,8 @@ const projects = {
       demo: 'https://fluffman.mariyadyshkant.com',
       code: 'https://github.com/mariyadyshkant/fluffman-project-work',
     },
-    screenshots: [],
+    video: '/fluffman-demo.mp4',
+    screenshots: ['/fluffman-shot-home.jpg', '/fluffman-shot-cane.jpg'],
     sections: [
       {
         heading: 'Il mio ruolo',

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import ScreenshotGallery from '../components/ScreenshotGallery'
 import { getProject } from '../data/projects'
 
 // Interpreta due sintassi nei testi (src/data/projects.js), senza HTML:
@@ -108,21 +109,11 @@ export default function ProjectDetail() {
           </aside>
         </div>
 
-        {screenshots.length > 0 && (
+        {(screenshots.length > 0 || video) && (
           <>
             <h2 id="screencast" className="section-heading">Screencast</h2>
-            <div className="screenshots">
-              {screenshots.map((src) => (
-                <figure key={src}>
-                  <img src={src} alt={`Screenshot di ${title}`} loading="lazy" />
-                </figure>
-              ))}
-            </div>
+            <ScreenshotGallery screenshots={screenshots} video={video} title={title} />
           </>
-        )}
-
-        {video && (
-          <video className="detail-video" src={video} controls playsInline preload="none" />
         )}
       </section>
 

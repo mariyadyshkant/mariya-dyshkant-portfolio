@@ -94,23 +94,65 @@ const projects = {
     title: 'financeD',
     tagline: 'Gestione delle finanze personali',
     summary:
-      'App desktop personale per la gestione delle finanze: importa automaticamente gli estratti conto Revolut, categorizza le spese e traccia stipendi e turni di lavoro.',
+      'App personale di gestione finanze: importa gli estratti conto Revolut, categorizza le spese, traccia stipendi e turni di lavoro. Include anche un bot Telegram per registrare spese al volo e una versione mobile con backend dedicato.',
     platforms: ['Desktop', 'Mobile · in corso'],
     stack: ['Electron', 'Svelte', 'FastAPI', 'SQLite / Turso'],
-    links: { demo: null, code: null },
-    screenshots: [],
+    links: { demo: null, code: 'https://github.com/mariyadyshkant/finance-hub-desktop-app.git' },
+    video: `/financed-demo.mp4`,
+    screenshots: [
+      '/financed-shot-dashboard.jpg',
+      '/financed-shot-consuntivo.jpg',
+      '/financed-shot-budget.jpg',
+      '/financed-shot-categorie.jpg',
+      '/financed-shot-icone.jpg',
+    ],
     sections: [
       {
-        heading: 'Perché esiste',
+        heading: 'Il mio ruolo',
         body: [
-          'financeD nasce da un’esigenza concreta: smettere di fare i conti a fine mese aprendo fogli Excel e PDF bancari. È un’app desktop personale che importa automaticamente gli estratti conto Revolut, categorizza le spese, traccia stipendi e turni di lavoro, e si collega a un bot Telegram per registrare le spese in tempo reale dal telefono.',
+          `Progetto personale, sviluppato con l'assistenza di Claude Code per l'implementazione — le decisioni architetturali, le ricerche e le scelte di prodotto sono mie.`,
         ],
       },
       {
-        heading: 'Stack',
+        heading: `Cosa fa, sotto il cofano`,
         body: [
-          'Frontend in Svelte con Electron per il packaging desktop, backend in Python/FastAPI con database SQLite su Turso. Include un parser PDF per estratti conto Revolut, un sistema di budget mensile con suggerimenti basati sulla storia, e un bot Telegram su Fly.io per la registrazione spese in tempo reale.',
+          [`Importa automaticamente gli estratti conto Revolut e categorizza le spese`],
+
+          
+          [`Pianificazione budget — budget mensile totale e per categoria, spese ricorrenti pianificate, modificabili mese per mese`],
+          [`Previsione stipendio — tariffa oraria media pesata dagli stipendi passati (più peso ai mesi recenti), usata per stimare lo stipendio dei mesi futuri in base alle ore già registrate nei turni`],
+          [`Integrazione Splitwise — amici, gruppi e spese condivise recuperati direttamente in app tramite le API di Splitwise`,
         ],
+      ],
+      },
+      {
+        heading: 'Perché Turso invece di Postgres',
+        body: [
+          'Il progetto nasce dalla migrazione di una precedente app web scritta in *SQLite*. Passare a Postgres avrebbe significato riscrivere buona parte delle query; *Turso* mi ha permesso di restare nella sintassi SQLite aggiungendo accesso al database da internet in qualsiasi momento — cosa che un database solo locale non permetteva.',
+        ],
+      },
+      {
+        heading: `Il bot Telegram`,
+        body: [`Nato da un'esigenza reale: registrare le spese al volo, da qualsiasi posto, con il database sempre raggiungibile e reattivo. Inizialmente usava l'API di Claude per interpretare il testo della spesa, poi sono passata a *Gemini* per una ragione pratica: generare una API key Claude richiedeva credito a pagamento, mentre Gemini offriva un livello gratuito sufficiente.`,
+
+        ],
+
+      },
+      {
+        heading: `Backend mobile su Fly.io`,
+        body: [`La versione mobile dell'app parla con un backend ospitato separatamente (a differenza della versione desktop, che gira in locale e non ha bisogno di protezione). Ho scelto *Fly.io* perché non va mai in sleep — l'app resta reattiva.
+
+          Per proteggere un backend raggiungibile da internet, ho aggiunto un'autenticazione a token condiviso: ogni richiesta deve portare un header **X-API-Token** che corrisponde a un valore segreto impostato lato server. Se il valore manca o è sbagliato, il backend risponde **401**. Il controllo si attiva solo quando il backend gira su Fly.io — in locale, per l'app desktop, resta disattivato e il comportamento non cambia. Non è un sistema di autenticazione completo (niente OAuth, niente utenti multipli) — è proporzionato a un'app pensata per un solo utente: io.`,
+
+        ],
+
+      },
+      {
+        heading: `Testing reale`,
+        body: [`Ho impostato una pipeline di release automatizzata (build firmate per macOS, supporto Linux) su *GitHub Actions*, perché volevo che l'app fosse davvero installabile da altri: l'ho fatta testare ai miei compagni di corso, e i problemi emersi mi hanno permesso di sistemare diversi bug prima del rilascio`,
+
+        ],
+
       },
     ],
   },

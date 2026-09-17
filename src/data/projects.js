@@ -68,23 +68,36 @@ const projects = {
   'corso-rama': {
     slug: 'corso-rama',
     title: 'Corsorama',
-    tagline: 'Gestione di un catalogo corsi',
+    tagline: 'Gestione di un catalogo di workshop',
     summary:
-      'Applicazione full-stack sviluppata in autonomia per la gestione di un catalogo corsi: CRUD completo, autenticazione e relazioni tra entità.',
+      'Applicazione full-stack per la gestione di un catalogo corsi: backend Laravel con pannello di amministrazione (CRUD completo, autenticazione), API REST pubblica consumata da un frontend React separato.',
     platforms: ['Web'],
-    stack: ['PHP', 'Laravel', 'MySQL'],
-    links: { demo: null, code: null },
+    stack: ['PHP', 'Laravel', 'React', `SQLite`],
+    links: { demo: null, code: `https://github.com/mariyadyshkant/workshop-catalog.git` },
     screenshots: [],
     sections: [
       {
-        heading: 'Il progetto',
+        heading: 'Il mio ruolo',
         body: [
-          'Applicazione full-stack sviluppata in autonomia per la gestione di un catalogo corsi: CRUD completo, autenticazione e relazioni tra entità.',
+          'Progetto di specializzazione Laravel al termine del percorso Boolean, poi ripreso e rifinito nel tempo — pannello di amministrazione, funzionalità aggiuntive, deploy',
         ],
       },
       {
-        heading: 'Stack',
-        body: ['PHP + Laravel sul backend, database MySQL.'],
+        heading: 'Architettura',
+        body: ['Monorepo con due parti distinte: un backend *Laravel* che gestisce sia un pannello di amministrazione (viste Blade, autenticazione Breeze, CRUD completo per corsi/categorie/livelli/docenti) sia una *API REST* pubblica; e un frontend *React* separato che consuma quell`API per mostrare il catalogo ai visitatori.'],
+      },
+      {
+        heading: 'Modello dati',
+        body: ['Quattro entità collegate: Corsi, Categorie, Livelli, Docenti — con relazioni dirette (un corso appartiene a una categoria, un livello, un docente). I corsi supportano **soft delete** (eliminazione reversibile) e, per i corsi in presenza, città e posti disponibili.'],
+      },{
+        heading: 'Validazione',
+        body: ['Le regole di validazione dell`area admin sono centralizzate in classi **Form Request** dedicate per ogni risorsa, invece di essere scritte inline nei controller — mantiene i controller più puliti e le regole riutilizzabili.'],
+      },{
+        heading: 'Deploy',
+        body: ['Backend su *Railway* (con volume persistente per il database SQLite), frontend su *Netlify*, comunicazione protetta da configurazione *CORS* tra i due domini.'],
+      },{
+        heading: 'Prossimi sviluppi',
+        body: ['Il pannello di amministrazione e l`API sono già completi e funzionanti. La prossima funzionalità pianificata è un sistema di prenotazione con *autenticazione pubblica*: gli utenti potranno registrarsi e prenotare direttamente un posto nei corsi (il bottone "Prenota" già visibile nella pagina di dettaglio è una anteprima di questa funzionalità, non ancora collegata a una logica reale).'],
       },
     ],
   },
@@ -160,23 +173,51 @@ const projects = {
   sylla: {
     slug: 'sylla',
     title: 'Sylla',
-    tagline: 'Organizzazione di studio e lavoro',
+    tagline: 'Organizzazione di lezioni e appunti',
     summary:
-      'App desktop per organizzare studio e lavoro su più fronti in parallelo, con blocchi tematici modificabili per ogni giorno della settimana.',
-    platforms: ['Desktop'],
+      'App desktop per tracciare le lezioni dei corsi che segui: calendario generato automaticamente dagli orari, trascrizione locale delle registrazioni, note elaborate via AI su richiesta.',
+    platforms: ['Desktop · in corso'],
     stack: ['Electron', 'Alpine.js', 'SQLite'],
-    links: { demo: null, code: null },
+    links: { demo: null, code: `https://github.com/mariyadyshkant/sylla-ai-driven-pj.git` },
     screenshots: [],
     sections: [
       {
-        heading: 'Il progetto',
+        heading: 'Visione',
         body: [
-          'App desktop per organizzare lo studio e il lavoro su più fronti in parallelo (corso, ricerca lavoro, progetti personali, formazione AI), pensata per chi deve destreggiarsi tra impegni diversi senza perdere il filo. Ogni giorno della settimana è organizzato in blocchi tematici modificabili, con un diario di sviluppo che traccia i progressi nel tempo.',
+          `Un'app desktop personale, single-user, per tenere traccia delle lezioni dei corsi che seguo (al momento due, pensata per estendersi a corsi futuri). L'obiettivo: non perdere il filo tra materiali, registrazioni e appunti sparsi tra corsi diversi che vanno avanti in parallelo.`,
         ],
       },
       {
-        heading: 'Stack',
-        body: ['Sviluppata con Electron, Alpine.js e SQLite, con persistenza dati completamente locale.'],
+        heading: 'Come funzionerebbe',
+        body: [`Un corso ha un orario settimanale ricorrente e un periodo (data inizio/fine): da questi, l'app genererebbe automaticamente tutte le lezioni previste, in stato "programmata". Le lezioni si "compilano" man mano che si svolgono davvero — argomenti trattati, materiali, note libere.
+          
+          Per le lezioni registrate: caricamento manuale del file audio/video (nessun download automatico dalle piattaforme, troppo fragile da gestire), estrazione audio e trascrizione locale e gratuita (whisper.cpp + ffmpeg — niente cloud per questo passaggio), e un pulsante opzionale per elaborare la trascrizione in note strutturate tramite un'API AI esterna, solo su richiesta.  
+          `],
+        
+      },
+      {
+        heading: `Scelte tecniche e perché`,
+        body: [[`Electron: app desktop cross-platform riusando competenze HTML/CSS/JS`],
+          [`Alpine.js invece di un framework pesante come React: reattività leggera, sufficiente per la scala del progetto`],
+          [`SQLite: storage locale su file, adatto a un uso single-user senza server`],
+          [`whisper.cpp + ffmpeg: trascrizione interamente offline, zero costi ricorrenti`],
+          [`L'API AI esterna resta opzionale by design: l'app deve restare utilizzabile anche senza, il costo per chiamata resta a carico dell'utente con una propria API key`],
+      ]
+      },
+      {
+        heading: `Un secondo componente pianificato: statistiche di studio`,
+        body: [`Un microservizio separato e containerizzato (Python/FastAPI, Docker), pensato per leggere periodicamente i dati esportati da Sylla e calcolare statistiche tipo "quante ore ho studiato questa settimana" su una dashboard dedicata — indipendente dall'app principale, nessuna connessione di rete diretta tra i due.`],
+
+      },
+      {
+        heading: `Fuori scope, volutamente`,
+        body: [`Autenticazione multi-utente, sincronizzazione cloud, download automatico dalle piattaforme di registrazione, board/kanban.`],
+
+      },
+      {
+        heading: `Stato attuale`,
+        body: [`Fase di progettazione: modello dati, architettura e scelte tecniche sono definite; lo sviluppo del codice deve ancora iniziare.`],
+
       },
     ],
   },

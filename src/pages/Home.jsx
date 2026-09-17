@@ -28,7 +28,7 @@ export default function Home() {
 
       <section id="about" className="wrap about">
         <span className="eyebrow">About</span>
-        <h2>Dal bisturi al debugger</h2>
+        <h2>Dal bisturi al debugging</h2>
         <p>
           Anni di studio in Medicina mi hanno insegnato a leggere sistemi complessi, cercare cause
           profonde e non fermarmi al primo sintomo. Quando ho scoperto lo sviluppo software,{' '}
@@ -121,6 +121,7 @@ export default function Home() {
         </p>
         <div className="contact-actions">
           <a className="btn primary" href="mailto:mariya.dyshkant@gmail.com">Scrivimi →</a>
+          <a className="btn primary" href="/cv-mariya-dyshkant.pdf" download>Scarica CV ↓</a>
           <div className="social-links">
             <a href="https://github.com/mariyadyshkant" target="_blank" rel="noopener" aria-label="GitHub">
               <svg><use href="#github-icon" /></svg>

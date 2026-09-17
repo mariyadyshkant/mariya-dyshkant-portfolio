@@ -119,7 +119,7 @@ section .eyebrow{ margin-bottom:14px; }
 .card{
   background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius);
   padding:24px; margin:20px 0;
-  display:grid; grid-template-rows:auto 1fr auto auto; gap:12px;
+  display:grid; grid-template-rows:auto auto auto 1fr; gap:12px;
 }
 .card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
 .card h3{ font-size:1.25rem; margin:0; }
@@ -129,7 +129,10 @@ section .eyebrow{ margin-bottom:14px; }
   text-transform:uppercase; white-space:nowrap; flex:none;
   color:var(--ink-soft); border:1px solid var(--line); padding:3px 8px; border-radius:999px;
 }
-.card p{ color:var(--ink-soft); font-size:.95rem; margin:0; }
+.card p{
+  color:var(--ink-soft); font-size:.95rem; line-height:1.5; margin:0;
+  height:calc(1.5em * 6);
+}
 .stack{ display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
 .stack span{
   font-family:'JetBrains Mono', monospace; font-size:.72rem;
@@ -256,13 +259,13 @@ section .eyebrow{ margin-bottom:14px; }
 /* CONTACT */
 .contact{ text-align:left; }
 .contact .btn{ margin-top:18px; }
-.contact-actions{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:18px; }
+.contact-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:18px; }
 .contact-actions .btn{ margin-top:0; }
 .social-links{ display:flex; gap:14px; }
 .social-links a{
   display:flex; align-items:center; justify-content:center;
   width:48px; height:48px; border-radius:50%;
-  color:var(--ink-soft); border:1px solid var(--line);
+  color:var(--accent); border:1px solid var(--accent);
   transition:.2s ease;
 }
 .social-links a:hover{ color:var(--accent); border-color:var(--accent); }

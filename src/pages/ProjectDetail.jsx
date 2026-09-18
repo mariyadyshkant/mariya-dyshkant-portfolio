@@ -59,6 +59,11 @@ export default function ProjectDetail() {
               Demo live →
             </a>
           )}
+          {links?.landing && (
+            <a className="btn primary" href={links.landing} target="_blank" rel="noopener">
+              Landing page →
+            </a>
+          )}
           {links?.code && (
             <a className="btn ghost" href={links.code} target="_blank" rel="noopener">
               Codice →

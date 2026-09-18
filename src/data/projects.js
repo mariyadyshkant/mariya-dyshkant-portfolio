@@ -183,7 +183,7 @@ const projects = {
       'App desktop per tracciare le lezioni dei corsi che segui: calendario generato automaticamente dagli orari, trascrizione locale delle registrazioni, note elaborate via AI su richiesta.',
     platforms: ['Desktop · in corso'],
     stack: ['Electron', 'Alpine.js', 'SQLite'],
-    links: { demo: null, code: `https://github.com/mariyadyshkant/sylla-ai-driven-pj.git` },
+    links: { landing: `https://sylla.mariyadyshkant.com/`, code: `https://github.com/mariyadyshkant/sylla-ai-driven-pj.git` },
     screenshots: [],
     sections: [
       {

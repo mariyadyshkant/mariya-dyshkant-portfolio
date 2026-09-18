@@ -73,8 +73,13 @@ const projects = {
       'Applicazione full-stack per la gestione di un catalogo corsi: backend Laravel con pannello di amministrazione (CRUD completo, autenticazione), API REST pubblica consumata da un frontend React separato.',
     platforms: ['Web'],
     stack: ['PHP', 'Laravel', 'React', `SQLite`],
-    links: { demo: null, code: `https://github.com/mariyadyshkant/workshop-catalog.git` },
-    screenshots: [],
+    links: { demo: 'https://corsorama.mariyadyshkant.com', code: `https://github.com/mariyadyshkant/workshop-catalog.git` },
+    screenshots: [
+      '/corsorama-shot-home.jpg',
+      '/corsorama-shot-catalogo.jpg',
+      '/corsorama-shot-dettaglio.jpg',
+      '/corsorama-shot-admin.jpg',
+    ],
     sections: [
       {
         heading: 'Il mio ruolo',

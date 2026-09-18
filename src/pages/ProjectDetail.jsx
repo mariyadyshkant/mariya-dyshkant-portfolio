@@ -64,7 +64,7 @@ export default function ProjectDetail() {
               Codice →
             </a>
           )}
-          {video && (
+          {(video || screenshots.length > 0) && (
             <a className="btn ghost" href="#screencast">
               Screencast ↓
             </a>

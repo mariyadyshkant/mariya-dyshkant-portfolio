@@ -10,7 +10,7 @@ export default function Home() {
       <Nav />
 
       <section className="hero wrap">
-        <p className="role">Junior Web Developer</p>
+        <p className="role">Junior Full-Stack Developer</p>
         <h1>
           <img className="signature" src="/firma-mariya-dyshkant.png" alt="Mariya Dyshkant" />
         </h1>
@@ -36,7 +36,7 @@ export default function Home() {
           organi e apparati, lavoro con componenti, API e basi di dati.
         </p>
         <p>
-          Oggi sono una Junior Full-Stack Developer in formazione continua (Boolean, Pacific Dev), con
+          Oggi sono una Junior Full-Stack Developer in formazione continua (Boolean, Multistack AI Developer Academy), con
           un interesse crescente per il backend, le architetture scalabili e il modo in cui i sistemi
           comunicano tra loro.
         </p>
@@ -79,7 +79,9 @@ export default function Home() {
               <SkillBadge code="MVC" name="MVC" status="solid" />
               <SkillBadge code="ND" name="Node.js · Express" status="solid" />
               <SkillBadge code="SQL" name="MySQL" status="solid" />
+              <SkillBadge code="PG" name="PostgreSQL" status="solid" />
               <SkillBadge code="API" name="REST API" status="solid" />
+              <SkillBadge code="PST" name="Pest" status="solid" />
             </div>
           </div>
           <div className="skills-col">
@@ -97,9 +99,9 @@ export default function Home() {
             <h4>In corso</h4>
             <div className="skill-badges">
               <SkillBadge code="DK" name="Docker" status="progress" />
-              <SkillBadge code="GCR" name="GCR" status="progress" />
+              {/* TODO: TypeScript — nessun progetto lo usa davvero; da confermare con Mariya se tenerlo */}
               <SkillBadge code="TS" name="TypeScript" status="progress" />
-              <SkillBadge code="TW" name="TailWind" status="progress" />
+              <SkillBadge code="TW" name="Tailwind CSS" status="progress" />
               <SkillBadge code="LLM" name="LLM APIs" status="progress" />
             </div>
           </div>
@@ -122,6 +124,7 @@ export default function Home() {
         <div className="contact-actions">
           <a className="btn primary" href="mailto:mariya.dyshkant@gmail.com">Scrivimi →</a>
           <a className="btn primary" href="/cv-mariya-dyshkant.pdf" download>Scarica CV ↓</a>
+          <a className="btn primary" href="/cv-mariya-dyshkant-en.pdf" download>Download CV (EN) ↓</a>
           <div className="social-links">
             <a href="https://github.com/mariyadyshkant" target="_blank" rel="noopener" aria-label="GitHub">
               <svg><use href="#github-icon" /></svg>

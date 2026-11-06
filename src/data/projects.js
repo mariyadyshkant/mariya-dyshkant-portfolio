@@ -70,9 +70,9 @@ const projects = {
     title: 'Corsorama',
     tagline: 'Gestione di un catalogo di workshop',
     summary:
-      'Applicazione full-stack per la gestione di un catalogo corsi: backend Laravel con pannello di amministrazione (CRUD completo, autenticazione), API REST pubblica consumata da un frontend React separato.',
+      'Applicazione full-stack per la gestione di un catalogo corsi: backend Laravel con pannello di amministrazione (CRUD completo, autenticazione), API REST pubblica consumata da un frontend React separato. Il backend è coperto da test automatici con Pest su backoffice, API e autenticazione.',
     platforms: ['Web'],
-    stack: ['PHP', 'Laravel', 'React', `SQLite`],
+    stack: ['PHP', 'Laravel', 'Pest', 'React', 'React Router', 'Vite', 'SQLite'],
     links: { demo: 'https://corsorama.mariyadyshkant.com', code: `https://github.com/mariyadyshkant/workshop-catalog.git` },
     screenshots: [
       '/corsorama-shot-home.jpg',
@@ -85,6 +85,7 @@ const projects = {
         heading: 'Il mio ruolo',
         body: [
           'Progetto di specializzazione Laravel al termine del percorso Boolean, poi ripreso e rifinito nel tempo — pannello di amministrazione, funzionalità aggiuntive, deploy',
+          // TODO: chiedere a Mariya cosa ha deciso lei e cosa ha fatto con Claude Code (da dichiarare come per financeD e Sylla, se vero)
         ],
       },
       {
@@ -112,8 +113,8 @@ const projects = {
     title: 'financeD',
     tagline: 'Gestione delle finanze personali',
     summary:
-      'App personale di gestione finanze: importa gli estratti conto Revolut, categorizza le spese, traccia stipendi e turni di lavoro. Include anche un bot Telegram per registrare spese al volo e una versione mobile con backend dedicato.',
-    platforms: ['Desktop', 'Mobile · in corso'],
+      'App personale di gestione finanze: importa gli estratti conto Revolut, categorizza le spese, traccia stipendi e turni di lavoro. Include anche un bot Telegram per registrare spese al volo e un backend hosted pronto per una futura app mobile.',
+    platforms: ['Desktop'],
     stack: ['Electron', 'Svelte', 'FastAPI', 'SQLite / Turso'],
     links: { demo: null, code: 'https://github.com/mariyadyshkant/finance-hub-desktop-app.git' },
     video: `/financed-demo.mp4`,
@@ -151,14 +152,14 @@ const projects = {
       },
       {
         heading: `Il bot Telegram`,
-        body: [`Nato da un'esigenza reale: registrare le spese al volo, da qualsiasi posto, con il database sempre raggiungibile e reattivo. Inizialmente usava l'API di Claude per interpretare il testo della spesa, poi sono passata a *Gemini* per una ragione pratica: generare una API key Claude richiedeva credito a pagamento, mentre Gemini offriva un livello gratuito sufficiente.`,
+        body: [`Nato da un'esigenza reale: registrare le spese al volo, da qualsiasi posto, con il database sempre raggiungibile e reattivo. Inizialmente usava l'API di Claude per interpretare il testo della spesa, poi sono passata a *Gemini* per una ragione pratica: generare una API key Claude richiedeva credito a pagamento, mentre Gemini offriva un livello gratuito sufficiente. Il bot registra le spese anche da *foto*, anche con più pagamenti nella stessa immagine.`,
 
         ],
 
       },
       {
-        heading: `Backend mobile su Fly.io`,
-        body: [`La versione mobile dell'app parla con un backend ospitato separatamente (a differenza della versione desktop, che gira in locale e non ha bisogno di protezione). Ho scelto *Fly.io* perché non va mai in sleep — l'app resta reattiva.
+        heading: `Backend hosted su Fly.io`,
+        body: [`Lo stesso backend è containerizzato e ospitato su Fly.io, pronto per una futura app mobile (che non è ancora iniziata), a differenza della versione desktop, che gira in locale e non ha bisogno di protezione. Ho scelto *Fly.io* perché non va mai in sleep — l'app resta reattiva.
 
           Per proteggere un backend raggiungibile da internet, ho aggiunto un'autenticazione a token condiviso: ogni richiesta deve portare un header **X-API-Token** che corrisponde a un valore segreto impostato lato server. Se il valore manca o è sbagliato, il backend risponde **401**. Il controllo si attiva solo quando il backend gira su Fly.io — in locale, per l'app desktop, resta disattivato e il comportamento non cambia. Non è un sistema di autenticazione completo (niente OAuth, niente utenti multipli) — è proporzionato a un'app pensata per un solo utente: io.`,
 
@@ -167,7 +168,7 @@ const projects = {
       },
       {
         heading: `Testing reale`,
-        body: [`Ho impostato una pipeline di release automatizzata (build firmate per macOS, supporto Linux) su *GitHub Actions*, perché volevo che l'app fosse davvero installabile da altri: l'ho fatta testare ai miei compagni di corso, e i problemi emersi mi hanno permesso di sistemare diversi bug prima del rilascio`,
+        body: [`Ho impostato una pipeline di release automatizzata (build per macOS, Windows e Linux) su *GitHub Actions*, perché volevo che l'app fosse davvero installabile da altri: l'ho fatta testare ai miei compagni di corso, e i problemi emersi mi hanno permesso di sistemare diversi bug prima del rilascio`,
 
         ],
 
@@ -180,25 +181,27 @@ const projects = {
     title: 'Sylla',
     tagline: 'Organizzazione di lezioni e appunti',
     summary:
-      'App desktop per tracciare le lezioni dei corsi che segui: calendario generato automaticamente dagli orari, trascrizione locale delle registrazioni, note elaborate via AI su richiesta.',
-    platforms: ['Desktop · in corso'],
-    stack: ['Electron', 'Alpine.js', 'SQLite'],
+      'App desktop per tracciare le lezioni dei corsi che segui: genera il calendario dagli orari ricorrenti, trascrive le registrazioni in locale e offline, e produce note con AI su richiesta.',
+    platforms: ['Desktop'],
+    stack: ['Electron', 'Tailwind CSS', 'Alpine.js', 'SQLite', 'whisper.cpp', 'Playwright'],
     links: { landing: `https://sylla.mariyadyshkant.com/`, code: `https://github.com/mariyadyshkant/sylla-ai-driven-pj.git` },
+    // TODO: chiedere a Mariya gli screenshot (public/sylla-shot-*.jpg) e collegarli qui
     screenshots: [],
     sections: [
       {
         heading: 'Visione',
         body: [
+          // TODO: chiedere a Mariya se "al momento due" corsi è ancora vero
           `Un'app desktop personale, single-user, per tenere traccia delle lezioni dei corsi che seguo (al momento due, pensata per estendersi a corsi futuri). L'obiettivo: non perdere il filo tra materiali, registrazioni e appunti sparsi tra corsi diversi che vanno avanti in parallelo.`,
         ],
       },
       {
-        heading: 'Come funzionerebbe',
-        body: [`Un corso ha un orario settimanale ricorrente e un periodo (data inizio/fine): da questi, l'app genererebbe automaticamente tutte le lezioni previste, in stato "programmata". Le lezioni si "compilano" man mano che si svolgono davvero — argomenti trattati, materiali, note libere.
-          
-          Per le lezioni registrate: caricamento manuale del file audio/video (nessun download automatico dalle piattaforme, troppo fragile da gestire), estrazione audio e trascrizione locale e gratuita (whisper.cpp + ffmpeg — niente cloud per questo passaggio), e un pulsante opzionale per elaborare la trascrizione in note strutturate tramite un'API AI esterna, solo su richiesta.  
-          `],
-        
+        heading: 'Come funziona',
+        body: [
+          `Un corso ha un orario settimanale ricorrente e un periodo (data inizio/fine): da questi, l'app genera automaticamente tutte le lezioni previste, in stato "programmata". Le lezioni si "compilano" man mano che si svolgono davvero — argomenti trattati, materiali, note libere — e si aprono in una finestra separata. A ogni lezione si possono allegare le slide in PDF.`,
+          `Per le lezioni registrate: caricamento manuale del file audio/video (nessun download automatico dalle piattaforme, troppo fragile da gestire), estrazione audio e trascrizione locale, offline e gratuita (whisper.cpp + ffmpeg — niente cloud per questo passaggio). La trascrizione viene ripulita automaticamente con Claude Haiku 4.5, con un pulsante "Ripristina originale" per tornare al testo grezzo.`,
+          `Un pulsante opzionale elabora la trascrizione in note strutturate tramite l'API di Claude, solo su richiesta, usando come contesto anche le slide allegate. Impostazioni e backup sono gestiti dall'app.`,
+        ],
       },
       {
         heading: `Scelte tecniche e perché`,
@@ -210,19 +213,19 @@ const projects = {
       ]
       },
       {
-        heading: `Un secondo componente pianificato: statistiche di studio`,
-        body: [`Un microservizio separato e containerizzato (Python/FastAPI, Docker), pensato per leggere periodicamente i dati esportati da Sylla e calcolare statistiche tipo "quante ore ho studiato questa settimana" su una dashboard dedicata — indipendente dall'app principale, nessuna connessione di rete diretta tra i due.`],
-
+        heading: `Test`,
+        body: [`L'app è coperta da 11 file di test end-to-end con Playwright.`],
       },
       {
         heading: `Fuori scope, volutamente`,
         body: [`Autenticazione multi-utente, sincronizzazione cloud, download automatico dalle piattaforme di registrazione, board/kanban.`],
-
       },
       {
         heading: `Stato attuale`,
-        body: [`Fase di progettazione: modello dati, architettura e scelte tecniche sono definite; lo sviluppo del codice deve ancora iniziare.`],
-
+        body: [
+          `L'app è funzionante ed è stata presentata al demo day del corso Multistack AI Developer. Sviluppata con l'assistenza di Claude Code.`,
+          // TODO: chiedere a Mariya i prossimi passi da indicare qui
+        ],
       },
     ],
   },

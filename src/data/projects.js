@@ -84,24 +84,23 @@ const projects = {
       {
         heading: 'Il mio ruolo',
         body: [
-          'Progetto di specializzazione Laravel al termine del percorso Boolean, poi ripreso e rifinito nel tempo — pannello di amministrazione, funzionalità aggiuntive, deploy',
-          // TODO: chiedere a Mariya cosa ha deciso lei e cosa ha fatto con Claude Code (da dichiarare come per financeD e Sylla, se vero)
+          'Progetto finale della specializzazione PHP/Laravel di Boolean, sviluppato end-to-end: dalla progettazione dell’architettura e del modello dati all’implementazione di backend, API e frontend, fino al deploy. Ho separato un *backend Laravel*, con pannello di amministrazione protetto e API REST pubblica, da un *frontend React* che la consuma, e ho coperto il backend con test automatici *Pest*.',
         ],
       },
       {
         heading: 'Architettura',
-        body: ['Monorepo con due parti distinte: un backend *Laravel* che gestisce sia un pannello di amministrazione (viste Blade, autenticazione Breeze, CRUD completo per corsi/categorie/livelli/docenti) sia una *API REST* pubblica; e un frontend *React* separato che consuma quell`API per mostrare il catalogo ai visitatori.'],
+        body: ['Monorepo con due parti distinte: un backend Laravel che gestisce sia un *pannello di amministrazione* (viste Blade, autenticazione Breeze, CRUD completo per corsi/categorie/livelli/docenti) sia una *API REST* pubblica; e un frontend React separato che consuma quell`API per mostrare il catalogo ai visitatori.'],
       },
       {
         heading: 'Modello dati',
-        body: ['Quattro entità collegate: Corsi, Categorie, Livelli, Docenti — con relazioni dirette (un corso appartiene a una categoria, un livello, un docente). I corsi supportano **soft delete** (eliminazione reversibile) e, per i corsi in presenza, città e posti disponibili.'],
-      },{
+        body: ['Quattro entità collegate: Corsi, Categorie, Livelli, Docenti — con *relazioni dirette* (un corso appartiene a una categoria, un livello, un docente). I corsi supportano **soft delete** (eliminazione reversibile) e, per i corsi in presenza, città e posti disponibili.'],
+      }, {
         heading: 'Validazione',
         body: ['Le regole di validazione dell`area admin sono centralizzate in classi **Form Request** dedicate per ogni risorsa, invece di essere scritte inline nei controller — mantiene i controller più puliti e le regole riutilizzabili.'],
-      },{
+      }, {
         heading: 'Deploy',
         body: ['Backend su *Railway* (con volume persistente per il database SQLite), frontend su *Netlify*, comunicazione protetta da configurazione *CORS* tra i due domini.'],
-      },{
+      }, {
         heading: 'Prossimi sviluppi',
         body: ['Il pannello di amministrazione e l`API sono già completi e funzionanti. La prossima funzionalità pianificata è un sistema di prenotazione con *autenticazione pubblica*: gli utenti potranno registrarsi e prenotare direttamente un posto nei corsi (il bottone "Prenota" già visibile nella pagina di dettaglio è una anteprima di questa funzionalità, non ancora collegata a una logica reale).'],
       },
@@ -137,12 +136,12 @@ const projects = {
         body: [
           [`Importa automaticamente gli estratti conto Revolut e categorizza le spese`],
 
-          
+
           [`Pianificazione budget — budget mensile totale e per categoria, spese ricorrenti pianificate, modificabili mese per mese`],
           [`Previsione stipendio — tariffa oraria media pesata dagli stipendi passati (più peso ai mesi recenti), usata per stimare lo stipendio dei mesi futuri in base alle ore già registrate nei turni`],
           [`Integrazione Splitwise — amici, gruppi e spese condivise recuperati direttamente in app tramite le API di Splitwise`,
+          ],
         ],
-      ],
       },
       {
         heading: 'Perché Turso invece di Postgres',
@@ -185,36 +184,40 @@ const projects = {
     platforms: ['Desktop'],
     stack: ['Electron', 'Tailwind CSS', 'Alpine.js', 'SQLite', 'whisper.cpp', 'Playwright'],
     links: { landing: `https://sylla.mariyadyshkant.com/`, code: `https://github.com/mariyadyshkant/sylla-ai-driven-pj.git` },
-    // TODO: chiedere a Mariya gli screenshot (public/sylla-shot-*.jpg) e collegarli qui
-    screenshots: [],
+    screenshots: [
+      '/sylla-shot-dashboard.jpg',
+      '/sylla-shot-corso.jpg',
+      '/sylla-shot-lezione.jpg',
+      '/sylla-shot-trascrizione.jpg',
+      '/sylla-shot-note.jpg',
+    ],
     sections: [
       {
         heading: 'Visione',
         body: [
-          // TODO: chiedere a Mariya se "al momento due" corsi è ancora vero
-          `Un'app desktop personale, single-user, per tenere traccia delle lezioni dei corsi che seguo (al momento due, pensata per estendersi a corsi futuri). L'obiettivo: non perdere il filo tra materiali, registrazioni e appunti sparsi tra corsi diversi che vanno avanti in parallelo.`,
+          `Un'app desktop personale, single-user, per tenere traccia delle lezioni dei corsi frequentati. L'obiettivo: *non perdere il filo* tra materiali, registrazioni e appunti sparsi tra corsi diversi che vanno avanti in parallelo.`,
         ],
       },
       {
         heading: 'Come funziona',
         body: [
-          `Un corso ha un orario settimanale ricorrente e un periodo (data inizio/fine): da questi, l'app genera automaticamente tutte le lezioni previste, in stato "programmata". Le lezioni si "compilano" man mano che si svolgono davvero — argomenti trattati, materiali, note libere — e si aprono in una finestra separata. A ogni lezione si possono allegare le slide in PDF.`,
-          `Per le lezioni registrate: caricamento manuale del file audio/video (nessun download automatico dalle piattaforme, troppo fragile da gestire), estrazione audio e trascrizione locale, offline e gratuita (whisper.cpp + ffmpeg — niente cloud per questo passaggio). La trascrizione viene ripulita automaticamente con Claude Haiku 4.5, con un pulsante "Ripristina originale" per tornare al testo grezzo.`,
-          `Un pulsante opzionale elabora la trascrizione in note strutturate tramite l'API di Claude, solo su richiesta, usando come contesto anche le slide allegate. Impostazioni e backup sono gestiti dall'app.`,
+          `Ogni corso ha un orario settimanale ricorrente e un periodo (data inizio/fine): da questi, *l'app genera automaticamente tutte le lezioni previste*, in stato "programmata". Le lezioni si "compilano" man mano che si svolgono davvero — argomenti trattati, materiali, note libere — e si aprono in una finestra separata. A ogni lezione si possono allegare le slide in PDF.`,
+          `Per le lezioni registrate: *caricamento manuale del file audio/video* (nessun download automatico dalle piattaforme, troppo fragile da gestire), *estrazione audio e trascrizione locale*, offline e gratuita (whisper.cpp + ffmpeg — niente cloud per questo passaggio). La trascrizione viene ripulita automaticamente con **Claude Haiku 4.5**, con un pulsante "Ripristina originale" per tornare al testo grezzo.`,
+          `Un pulsante opzionale *elabora la trascrizione in note strutturate* tramite l'API di Claude, solo su richiesta, usando come contesto anche le slide allegate. Impostazioni e backup sono gestiti dall'app.`,
         ],
       },
       {
         heading: `Scelte tecniche e perché`,
-        body: [[`Electron: app desktop cross-platform riusando competenze HTML/CSS/JS`],
-          [`Alpine.js invece di un framework pesante come React: reattività leggera, sufficiente per la scala del progetto`],
-          [`SQLite: storage locale su file, adatto a un uso single-user senza server`],
-          [`whisper.cpp + ffmpeg: trascrizione interamente offline, zero costi ricorrenti`],
-          [`L'API AI esterna resta opzionale by design: l'app deve restare utilizzabile anche senza, il costo per chiamata resta a carico dell'utente con una propria API key`],
-      ]
+        body: [[`**Electron**: app desktop cross-platform riusando competenze HTML/CSS/JS`],
+        [`**Alpine.js** invece di un framework pesante come React: reattività leggera, sufficiente per la scala del progetto`],
+        [`**SQLite**: storage locale su file, adatto a un uso single-user senza server`],
+        [`**whisper.cpp** + **ffmpeg**: trascrizione interamente offline, zero costi ricorrenti`],
+        [`L'API AI esterna resta opzionale by design: l'app deve restare utilizzabile anche senza, il costo per chiamata resta a carico dell'utente con una propria API key`],
+        ]
       },
       {
         heading: `Test`,
-        body: [`L'app è coperta da 11 file di test end-to-end con Playwright.`],
+        body: [`L'app è coperta da 11 file di test end-to-end con *Playwright*.`],
       },
       {
         heading: `Fuori scope, volutamente`,
@@ -224,7 +227,7 @@ const projects = {
         heading: `Stato attuale`,
         body: [
           `L'app è funzionante ed è stata presentata al demo day del corso Multistack AI Developer. Sviluppata con l'assistenza di Claude Code.`,
-          // TODO: chiedere a Mariya i prossimi passi da indicare qui
+          `Il prossimo passo è un *pannello di ripasso*: a partire dalle note e dalle trascrizioni di ogni lezione, un modello AI genera flashcard e domande a scelta multipla per ripassare gli argomenti trattati. Come per le note, la generazione sarà opzionale e avviata dall’utente.`,
         ],
       },
     ],

@@ -99,8 +99,6 @@ export default function Home() {
             <h4>In corso</h4>
             <div className="skill-badges">
               <SkillBadge code="DK" name="Docker" status="progress" />
-              {/* TODO: TypeScript — nessun progetto lo usa davvero; da confermare con Mariya se tenerlo */}
-              <SkillBadge code="TS" name="TypeScript" status="progress" />
               <SkillBadge code="TW" name="Tailwind CSS" status="progress" />
               <SkillBadge code="LLM" name="LLM APIs" status="progress" />
             </div>

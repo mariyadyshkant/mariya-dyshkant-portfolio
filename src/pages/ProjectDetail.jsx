@@ -2,8 +2,10 @@ import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import BackToTop from '../components/BackToTop'
 import ScreenshotGallery from '../components/ScreenshotGallery'
 import { getProject } from '../data/projects'
+import { scrollToSection } from '../utils/scrollToSection'
 
 // Interpreta due sintassi nei testi (src/data/projects.js), senza HTML:
 // **testo** -> evidenziazione "codice" (usata per sintassi/termini tecnici letterali)
@@ -32,7 +34,7 @@ export default function ProjectDetail() {
   const project = getProject(slug)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }, [slug])
 
   if (!project) {
@@ -70,7 +72,15 @@ export default function ProjectDetail() {
             </a>
           )}
           {(video || screenshots.length > 0) && (
-            <a className="btn ghost" href="#screencast">
+            <a
+              className="btn ghost"
+              href="#screencast"
+              onClick={(e) => {
+                e.preventDefault()
+                // centra la galleria (immagine + miniature), non il titolo
+                scrollToSection(document.querySelector('#screencast .gallery'))
+              }}
+            >
               Screencast ↓
             </a>
           )}
@@ -115,14 +125,15 @@ export default function ProjectDetail() {
         </div>
 
         {(screenshots.length > 0 || video) && (
-          <>
-            <h2 id="screencast" className="section-heading">Screencast</h2>
+          <div id="screencast" style={{ display: 'flow-root' }}>
+            <h2 className="section-heading">Screencast</h2>
             <ScreenshotGallery screenshots={screenshots} video={video} title={title} />
-          </>
+          </div>
         )}
       </section>
 
       <Footer />
+      <BackToTop />
     </>
   )
 }

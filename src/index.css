@@ -401,3 +401,21 @@ footer{ padding:30px 0 50px; text-align:center; color:var(--ink-soft); font-size
 
 .not-found{ text-align:center; padding:100px 0; }
 
+
+/* BACK TO TOP (pagine di dettaglio) */
+.back-to-top{
+  position:fixed; right:20px; bottom:20px; z-index:9;
+  height:40px; padding:0 16px 0 12px; border-radius:999px;
+  border:1px solid var(--accent-soft); background:rgba(243,241,235,.85);
+  backdrop-filter:blur(4px);
+  color:var(--accent); cursor:pointer;
+  display:flex; align-items:center; gap:6px;
+  font-family:'JetBrains Mono', monospace; font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  opacity:0; pointer-events:none; transform:translateY(8px);
+  transition:opacity .25s ease, transform .25s ease, background .2s ease, border-color .2s ease;
+}
+.back-to-top.show{ opacity:.9; pointer-events:auto; transform:none; }
+.back-to-top.show:hover{ opacity:1; background:var(--bg); border-color:var(--accent); }
+.back-to-top svg{ width:18px; height:18px; flex:none; }
+@media (max-width:720px){ .back-to-top{ right:14px; bottom:14px; height:36px; font-size:.68rem; } }

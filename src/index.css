@@ -145,7 +145,7 @@ section .eyebrow{ margin-bottom:14px; }
 /* SKILLS */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   margin-top: 24px;
 }
@@ -225,6 +225,10 @@ section .eyebrow{ margin-bottom:14px; }
   border-style: dashed;
 }
 
+.skill-badge .status.base {
+  background: linear-gradient(90deg, var(--accent) 50%, transparent 50%);
+}
+
 .skills-legend {
   grid-column: 1 / -1;
   display: flex;
@@ -255,6 +259,10 @@ section .eyebrow{ margin-bottom:14px; }
 .skills-legend .status.progress {
   background: transparent;
   border-style: dashed;
+}
+
+.skills-legend .status.base {
+  background: linear-gradient(90deg, var(--accent) 50%, transparent 50%);
 }
 /* CONTACT */
 .contact{ text-align:left; }

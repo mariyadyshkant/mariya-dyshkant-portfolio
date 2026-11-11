@@ -16,7 +16,7 @@ export default function Home() {
         </h1>
         <p className="tagline">
           Dal ragionamento clinico al ragionamento sui sistemi: oggi progetto e sviluppo applicazioni
-          full-stack, con un occhio rivolto a backend e architetture scalabili.
+          full-stack, con una preferenza per il backend.
         </p>
         <div className="cta">
           <a className="btn primary" href="#progetti">Guarda i progetti</a>
@@ -36,9 +36,9 @@ export default function Home() {
           organi e apparati, lavoro con componenti, API e basi di dati.
         </p>
         <p>
-          Oggi sono una Junior Full-Stack Developer in formazione continua (Boolean, Multistack AI Developer Academy), con
-          un interesse crescente per il backend, le architetture scalabili e il modo in cui i sistemi
-          comunicano tra loro.
+          Oggi sono una Junior Full-Stack Developer: ho concluso il master full-stack di Boolean (con
+          approfondimento PHP/Laravel) e il percorso Multistack AI Developer, e continuo a studiare. Mi
+          interessa soprattutto il backend e il modo in cui i sistemi comunicano tra loro.
         </p>
       </section>
 
@@ -69,6 +69,7 @@ export default function Home() {
               <SkillBadge code="RE" name="React.js" status="solid" />
               <SkillBadge code="VT" name="Vite" status="solid" />
               <SkillBadge code="BS" name="Bootstrap" status="solid" />
+              <SkillBadge code="TW" name="Tailwind CSS" status="progress" />
             </div>
           </div>
           <div className="skills-col">
@@ -79,9 +80,10 @@ export default function Home() {
               <SkillBadge code="MVC" name="MVC" status="solid" />
               <SkillBadge code="ND" name="Node.js · Express" status="solid" />
               <SkillBadge code="SQL" name="MySQL" status="solid" />
-              <SkillBadge code="PG" name="PostgreSQL" status="solid" />
+              <SkillBadge code="PG" name="PostgreSQL" status="base" />
               <SkillBadge code="API" name="REST API" status="solid" />
-              <SkillBadge code="PST" name="Pest" status="solid" />
+              <SkillBadge code="PST" name="Pest" status="base" />
+              <SkillBadge code="LLM" name="LLM APIs" status="progress" />
             </div>
           </div>
           <div className="skills-col">
@@ -89,22 +91,16 @@ export default function Home() {
             <div className="skill-badges">
               <SkillBadge code="GIT" name="Git · GitHub" status="solid" />
               <SkillBadge code="VS" name="VS Code" status="solid" />
-              <SkillBadge code="PM" name="Postman" status="solid" />
-              <SkillBadge code="FIG" name="Figma" status="solid" />
-              <SkillBadge code="NF" name="Netlify" status="solid" />
-              <SkillBadge code="I/D" name="CI/CD" status="solid" />
-            </div>
-          </div>
-          <div className="skills-col">
-            <h4>In corso</h4>
-            <div className="skill-badges">
-              <SkillBadge code="DK" name="Docker" status="progress" />
-              <SkillBadge code="TW" name="Tailwind CSS" status="progress" />
-              <SkillBadge code="LLM" name="LLM APIs" status="progress" />
+              <SkillBadge code="PM" name="Postman" status="base" />
+              <SkillBadge code="FIG" name="Figma" status="base" />
+              <SkillBadge code="NF" name="Netlify" status="base" />
+              <SkillBadge code="I/D" name="CI/CD" status="base" />
+              <SkillBadge code="DK" name="Docker" status="base" />
             </div>
           </div>
           <div className="skills-legend">
             <span><span className="status solid" /> Consolidato</span>
+            <span><span className="status base" /> Base</span>
             <span><span className="status progress" /> In apprendimento</span>
           </div>
         </div>
@@ -121,8 +117,8 @@ export default function Home() {
         </p>
         <div className="contact-actions">
           <a className="btn primary" href="mailto:mariya.dyshkant@gmail.com">Scrivimi →</a>
-          <a className="btn primary" href="/cv-mariya-dyshkant.pdf" download>Scarica CV ↓</a>
-          <a className="btn primary" href="/cv-mariya-dyshkant-en.pdf" download>Download CV (EN) ↓</a>
+          <a className="btn primary" href="https://cv.mariyadyshkant.com" target="_blank" rel="noopener">Vedi CV →</a>
+          <a className="btn primary" href="https://cv.mariyadyshkant.com/en" target="_blank" rel="noopener">View CV (EN) →</a>
           <div className="social-links">
             <a href="https://github.com/mariyadyshkant" target="_blank" rel="noopener" aria-label="GitHub">
               <svg><use href="#github-icon" /></svg>
